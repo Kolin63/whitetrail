@@ -8,7 +8,7 @@ local config = {
 }
 
 -- if character is in config.whitespace, returns true
-function is_whitespace(char)
+M.is_whitespace = function(char)
   for _, i in ipairs(config.whitespace) do
     if i == char then return true end
   end
@@ -20,7 +20,7 @@ M.check = function(buf)
   local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
   for i, line in ipairs(lines) do
     local og = line
-    while is_whitespace(line:sub(#line, #line)) do
+    while M.is_whitespace(line:sub(#line, #line)) do
       line = line:sub(1, #line - 1)
     end
 
