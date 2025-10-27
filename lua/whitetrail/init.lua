@@ -17,6 +17,7 @@ end
 
 -- checks for whitespace in given buffer number
 M.check = function(buf)
+  if buf == nil then buf = 0 end
   local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
   for i, line in ipairs(lines) do
     local og = line
