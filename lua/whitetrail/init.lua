@@ -38,7 +38,9 @@ M.check_all = function()
     local wins = vim.api.nvim_tabpage_list_wins(tab)
     for _, win in ipairs(wins) do
       local buf = vim.api.nvim_win_get_buf(win)
-      M.check(buf)
+      if vim.api.nvim_get_option_value("modifiable", {buf = buf}) == true then
+        M.check(buf)
+      end
     end
   end
 end
